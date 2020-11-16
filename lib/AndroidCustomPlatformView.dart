@@ -9,6 +9,7 @@ class AndroidCustomPlatformView implements CustomPlatform {
     BuildContext context,
     Map creationParams,
     OnPlatformCreatedCallback onPlatformCreatedCallback,
+    @required PlatformCallbacksHandler platformCallbacksHandler,
   }) {
     return GestureDetector(
       onLongPress: () {},
@@ -16,11 +17,10 @@ class AndroidCustomPlatformView implements CustomPlatform {
       child: AndroidView(
         viewType: 'plugins.flutter.PlatformView',
         onPlatformViewCreated: (int id) {
-          print('@@@@ onPlatformViewCreated');
           if (onPlatformCreatedCallback == null) {
             return;
           }
-          onPlatformCreatedCallback(MethodChannelPlatform(id));
+          onPlatformCreatedCallback(MethodChannelPlatform(id, platformCallbacksHandler));
         },
 //        gestureRecognizers: gestureRecognizers,
         // WebView content is not affected by the Android view's layout direction,

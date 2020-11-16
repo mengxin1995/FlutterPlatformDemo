@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   PlatformController controller;
+  String text = "初始化";
   
   @override
   void initState() {
@@ -39,6 +40,11 @@ class _MyAppState extends State<MyApp> {
                     onPlatformCreatedCallback: (con) {
                       controller = con;
                     },
+                    setText: (str) {
+                      setState(() {
+                        text = str;
+                      });
+                    },
                   )
               ),
               InkWell(
@@ -48,6 +54,9 @@ class _MyAppState extends State<MyApp> {
                 child: Text(
                     "点击我调用原生",
                 ),
+              ),
+              Text(
+                text,
               ),
             ],
           ),

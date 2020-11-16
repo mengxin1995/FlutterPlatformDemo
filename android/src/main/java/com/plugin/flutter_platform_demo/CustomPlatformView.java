@@ -3,6 +3,7 @@ package com.plugin.flutter_platform_demo;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -25,7 +26,15 @@ public class CustomPlatformView implements PlatformView, MethodChannel.MethodCal
         theContainerView = LayoutInflater.from(context).inflate(R.layout.test, null);
         tv = (TextView)theContainerView.findViewById(R.id.tv);
         tv.setText(params.get("initText").toString());
-
+        Button btn = (Button) theContainerView.findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> args = new HashMap<>();
+                args.put("text", "原始点击传递过来");
+                methodChannel.invokeMethod("setFlutterText", args);
+            }
+        });
         methodChannel = new MethodChannel(messenger, "plugins.flutter.PlatformView_" + id);
         methodChannel.setMethodCallHandler(this);
     }
