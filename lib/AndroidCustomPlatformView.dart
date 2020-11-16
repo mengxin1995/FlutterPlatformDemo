@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'CustomPlatform.dart';
 
 class AndroidCustomPlatformView implements CustomPlatform {
   @override
   Widget build({
     BuildContext context,
-    CreationParams creationParams,
+    Map creationParams,
   }) {
     return GestureDetector(
       onLongPress: () {},
@@ -19,9 +20,8 @@ class AndroidCustomPlatformView implements CustomPlatform {
         // we explicitly set it here so that the widget doesn't require an ambient
         // directionality.
         layoutDirection: TextDirection.rtl,
-//        creationParams:
-//        MethodChannelWebViewPlatform.creationParamsToMap(creationParams),
-//        creationParamsCodec: const StandardMessageCodec(),
+        creationParams: creationParams ?? {},
+        creationParamsCodec: const StandardMessageCodec(),
       ),
     );
   }

@@ -9,6 +9,8 @@ class CustomPlatformView extends StatefulWidget {
 class _PlatformViewState extends State<CustomPlatformView> {
   @override
   Widget build(BuildContext context) {
-    return AndroidCustomPlatformView().build(context: context);
+    return AndroidCustomPlatformView().build(context: context, creationParams: {
+      "initText": "来自flutter的初始化"
+    });
   }
 }
