@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_demo/CustomPlatform.dart';
 import 'package:flutter_platform_demo/customPlatformView.dart';
 
 void main() {
@@ -12,6 +13,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  PlatformController controller;
+  
   @override
   void initState() {
     super.initState();
@@ -25,11 +28,28 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Container(
-            color: Colors.amberAccent,
-              width: 100,
-              height: 100,
-              child: CustomPlatformView()
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                color: Colors.amberAccent,
+                  width: 100,
+                  height: 100,
+                  child: CustomPlatformView(
+                    onPlatformCreatedCallback: (con) {
+                      controller = con;
+                    },
+                  )
+              ),
+              InkWell(
+                onTap: () {
+                  controller.setText("由flutter點擊生成");
+                },
+                child: Text(
+                    "点击我调用原生",
+                ),
+              ),
+            ],
           ),
         ),
       ),
