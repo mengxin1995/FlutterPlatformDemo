@@ -4,9 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-
-import com.plugin.flutter_platform_demo.FlutterPlatformDemoPlugin;
-
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
