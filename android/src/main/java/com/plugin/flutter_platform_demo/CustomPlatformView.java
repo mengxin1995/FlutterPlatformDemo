@@ -1,6 +1,7 @@
 package com.plugin.flutter_platform_demo;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,12 +14,10 @@ import io.flutter.plugin.platform.PlatformView;
 
 public class CustomPlatformView implements PlatformView, MethodChannel.MethodCallHandler {
 
-    private TextView mCustomView;
+    private View theContainerView;
 
     public CustomPlatformView(Context context, BinaryMessenger messenger, int id, Map<String, Object> params, View containerView) {
-//        LayoutInflater.from(context).inflate()
-        mCustomView = new TextView(context);
-        mCustomView.setText("我是自定义view");
+        theContainerView = LayoutInflater.from(context).inflate(R.layout.test, null);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class CustomPlatformView implements PlatformView, MethodChannel.MethodCal
 
     @Override
     public View getView() {
-        return mCustomView;
+        return theContainerView;
     }
 
     @Override

@@ -25,7 +25,12 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: CustomPlatformView(),
+          child: Container(
+            color: Colors.amberAccent,
+              width: 100,
+              height: 100,
+              child: CustomPlatformView()
+          ),
         ),
       ),
     );
